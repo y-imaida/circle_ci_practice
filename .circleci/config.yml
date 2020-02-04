@@ -7,6 +7,7 @@ jobs:
     steps:
       - checkout
       - kube-orb/install-kubectl
+      - kube-orb/install-kubeconfig
       - run: kubectl -n common get pod
 
 orbs:
