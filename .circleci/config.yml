@@ -9,10 +9,10 @@ jobs:
       - kube-orb/install-kubectl
       - kube-orb/install-kubeconfig
       - run: kubectl -n common get pod
-      - run: export CIRCLECI_CONTAINER_IP=`curl -f -s ifconfig.me`
-      - run: echo $CIRCLECI_CONTAINER_IP
-      - run: cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f - --dry-run
-      - run: cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f -
+      - run: export CIRCLECI_CONTAINER_IP=`curl -f -s ifconfig.me` && cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f -
+      # - run: echo $CIRCLECI_CONTAINER_IP
+      # - run: cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f - --dry-run
+      # - run: cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f -
       - run: kubectl -n common get service ssh-proxy -o yaml
 
 orbs:
