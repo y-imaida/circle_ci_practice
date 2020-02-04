@@ -11,6 +11,8 @@ jobs:
       - run: kubectl -n common get pod
       - run: export CIRCLECI_CONTAINER_IP=`curl -f -s ifconfig.me`
       - run: cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f - --dry-run
+      - run: cat k8s/service.yaml | sed s/CIRCLECI_CONTAINER_IP/${CIRCLECI_CONTAINER_IP}/ | kubectl apply -f -
+      - run: kubectl -n common get service ssh-proxy -o yaml
 
 orbs:
   kube-orb: circleci/kubernetes@0.11.0
