@@ -9,6 +9,7 @@ jobs:
       - kube-orb/install-kubectl
       - kube-orb/install-kubeconfig
       - run: kubectl -n common get pod
+      - run: curl http://ifconfig.me
 
 orbs:
   kube-orb: circleci/kubernetes@0.11.0
