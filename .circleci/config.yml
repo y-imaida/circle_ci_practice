@@ -1,7 +1,13 @@
-version: 2
+version: 2.1
+
 jobs:
   build:
     docker:
-      - image: circleci/node:8.11.3
+      - image: golang:1.13
     steps:
-      - run: echo "hello world"
+      - checkout
+      - kube-orb/install-kubectl
+      - run: kubectl -n common get pod
+
+orbs:
+  kube-orb: circleci/kubernetes@0.11.0
